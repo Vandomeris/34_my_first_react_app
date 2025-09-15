@@ -12,6 +12,8 @@ export default function TodoList() {
         { id: 3, text: 'Забрать зарплату', completed: false },
     ])
 
+
+
     function addTodo(event) {
         event.preventDefault()
         setTodos(
@@ -25,7 +27,28 @@ export default function TodoList() {
     }
 
     function toggleTodo(id) {
-        console.log(id)
+        setTodos(
+            todos.map(item => {
+                if (item.id === id) {
+                    item.completed = !item.completed
+                }
+                return item
+            })
+        )
+    }
+
+    function deleteTodo(id) {
+
+        setTodos(
+            todos.filter(item => {
+                if (item.id !== id) {
+                    return true
+                }
+
+
+            })
+        )
+
     }
 
     return (
@@ -56,6 +79,7 @@ export default function TodoList() {
                             text={todo.text}
                             completed={todo.completed}
                             toggleTodo={toggleTodo}
+                            deleteTodo={deleteTodo}
                         />
                     ))
                 }

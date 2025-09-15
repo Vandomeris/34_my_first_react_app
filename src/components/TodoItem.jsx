@@ -1,11 +1,11 @@
-export default function TodoItem({ id, text, completed, toggleTodo }) {
+export default function TodoItem({ id, text, completed, toggleTodo, deleteTodo }) {
     return (
-        <div>
-            <label >
+        <div className="flex items-center gap-x-5">
+            <label className={(completed ? 'striked' : '')}>
                 <input checked={completed} onChange={() => toggleTodo(id)} type="checkbox" />
                 {text}
             </label>
-
+            <button onClick={() => deleteTodo(id)}>Delete task</button>
         </div>
     )
 }
