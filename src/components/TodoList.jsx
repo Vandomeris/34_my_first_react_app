@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TodoItem from "./TodoItem"
 
 export default function TodoList() {
@@ -12,7 +12,29 @@ export default function TodoList() {
         { id: 3, text: 'Забрать зарплату', completed: false },
     ])
 
+    const [filteredTodos, setFilteredTodos] = useState([])
+    const [currentFilter, setCurrentFilter] = useState('All')
 
+    function doFilter() {
+        switch (currentFilter) {
+            case 'Done':
+                setFilteredTodos(
+                    todos.filter(todo => todo.completed === true)
+                )
+                break;
+            case 'Process':
+                setFilteredTodos(
+                    todos.filter(todo => todo.completed === false)
+                )
+                break;
+            default:
+                setFilteredTodos(todos)
+        }
+    }
+
+    useEffect(() => {
+        doFilter()
+    }, [currentFilter])
 
     function addTodo(event) {
         event.preventDefault()
@@ -57,15 +79,15 @@ export default function TodoList() {
             <div>
                 <label>
                     Все задания
-                    <input type="radio" value="All" name="todoFilter" />
+                    <input type="radio" onChange={() => setCurrentFilter('All')} name="todoFilter" />
                 </label>
                 <label>
                     Выполненные
-                    <input type="radio" value="Completed" name="todoFilter" />
+                    <input type="radio" onChange={() => setCurrentFilter('Done')} name="todoFilter" />
                 </label>
                 <label>
                     В процессе
-                    <input type="radio" value="Ongoing" name="todoFilter" />
+                    <input type="radio" onChange={() => setCurrentFilter('Process')} name="todoFilter" />
                 </label>
 
             </div>
@@ -73,7 +95,7 @@ export default function TodoList() {
 
             <div>
                 {
-                    todos.map((todo) => (
+                    filteredTodos.map((todo) => (
                         <TodoItem
                             id={todo.id}
                             text={todo.text}
