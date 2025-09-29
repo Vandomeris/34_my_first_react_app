@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 
-export default function QuizDirectQuestion({ question, correntAnswer }) {
+export default function QuizDirectQuestion({ question, correctAnswer }) {
 
 
     const [userAnswer, setUserAnswer] = useState('')
     const [result, setResult] = useState(null)
 
     useEffect(() => {
-        userAnswer == correntAnswer ? setResult('Верно!') : setResult('Неверно!')
+        userAnswer == correctAnswer ? setResult('Верно!') : setResult('Неверно!')
     }, [userAnswer])
 
     return (
