@@ -1,18 +1,20 @@
 import { useState } from "react"
 import CreateQuizDirectQuestion from "./blocks/CreateQuizDirectQuestion"
+import CreateQuizSignleAnswer from "./blocks/CreateQuizSignleAnswer"
+import CreateQuizMultipleAnswer from "./blocks/CreateQuizMultipleAnswer"
 
 export default function NewQuizForm() {
 
 
     const [questionList, setQuestionList] = useState([
-        { id: Date.now(), type: 'direct', options: [], question: '', correctAnswer: '' },
+        { id: Date.now(), type: 'direct', options: [''], question: '', correctAnswer: '' },
     ])
 
     function addQuestion() {
         setQuestionList(
             [
                 ...questionList,
-                { id: Date.now(), type: 'direct', options: [], question: '', correctAnswer: '' }
+                { id: Date.now(), type: 'direct', options: [''], question: '', correctAnswer: '' }
             ]
         )
     }
@@ -54,7 +56,26 @@ export default function NewQuizForm() {
 
                 {
                     questionList.map(question => (
-                        <CreateQuizDirectQuestion question={question} editQuestion={editQuestion} />
+                        <div>
+                            <select onChange={(e) => editQuestion(question.id, e.target.value, 'type')}>
+                                <option value="direct">Прямой ответ</option>
+                                <option value="single">Единичный выбор</option>
+                                <option value="multiple">Множественный выбор</option>
+                            </select>
+                            {
+                                question.type === 'direct' &&
+                                <CreateQuizDirectQuestion question={question} editQuestion={editQuestion} />
+                            }
+                            {
+                                question.type === 'single' &&
+                                <CreateQuizSignleAnswer question={question} editQuestion={editQuestion} />
+                            }
+                            {
+                                question.type === 'multiple' &&
+                                <CreateQuizMultipleAnswer question={question} editQuestion={editQuestion} />
+                            }
+                        </div>
+
                     ))
                 }
 
