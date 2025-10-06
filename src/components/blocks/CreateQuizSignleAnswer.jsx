@@ -13,15 +13,15 @@ export default function CreateQuizSignleAnswer({ question, editQuestion }) {
         <div>
             <label>
                 <p>Введите текст вопроса</p>
-                <input value={question.question} onInput={(e) => editQuestion(question.id, e.target.value, 'question')} type="text" placeholder="Текст вопроса" />
+                <input className="border border-gray-500 px-2 py-1 my-2" value={question.question} onInput={(e) => editQuestion(question.id, e.target.value, 'question')} type="text" placeholder="Текст вопроса" />
             </label>
 
             <div>
                 {
                     question.options.map((option, index) => (
-                        <div>
-                            <input type="text" value={option} onInput={(e) => editOption(question.id, index, e.target.value)} placeholder={`Вариант ${index + 1}`} />
-                            <button onClick={() => editQuestion(question.id, option, 'correctAnswer')}>Отметить правильный ответ</button>
+                        <div className="flex items-center gap-x-3">
+                            <input className="border border-gray-500 px-2 py-1 my-2" type="text" value={option} onInput={(e) => editOption(question.id, index, e.target.value)} placeholder={`Вариант ${index + 1}`} />
+                            <button className="cursor-pointer border border-green-500 px-2 py-1 hover:bg-green-500 hover:text-white transition-all" onClick={() => editQuestion(question.id, option, 'correctAnswer')}>Отметить правильный ответ</button>
                         </div>
 
                     ))

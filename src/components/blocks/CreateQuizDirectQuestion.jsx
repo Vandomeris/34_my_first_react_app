@@ -4,11 +4,11 @@ export default function CreateQuizDirectQuestion({ question, editQuestion }) {
             <div>
                 <label>
                     <p>Введите текст вопроса</p>
-                    <input value={question.question} onInput={(e) => editQuestion(question.id, e.target.value, 'question')} type="text" placeholder="Текст вопроса" />
+                    <input className="border border-gray-500 px-2 py-1 my-2" value={question.question} onInput={(e) => editQuestion(question.id, e.target.value, 'question')} type="text" placeholder="Текст вопроса" />
                 </label>
                 <label>
                     <p>Введите правильный ответ</p>
-                    <input value={question.correctAnswer} onInput={(e) => editQuestion(question.id, e.target.value, 'correctAnswer')} type="text" placeholder="Правильный ответ" />
+                    <input className="border border-gray-500 px-2 py-1 my-2" value={question.correctAnswer} onInput={(e) => editQuestion(question.id, e.target.value, 'correctAnswer')} type="text" placeholder="Правильный ответ" />
                 </label>
             </div>
         </div>

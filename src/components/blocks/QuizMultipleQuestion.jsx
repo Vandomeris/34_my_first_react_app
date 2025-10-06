@@ -20,7 +20,6 @@ export default function QuizMultipleQuestion() {
             setUserAnswer(
                 userAnswer.filter((item) => item !== answer)
             )
-            console.log(userAnswer)
         } else {
             setUserAnswer(
                 [
@@ -28,7 +27,6 @@ export default function QuizMultipleQuestion() {
                     answer
                 ]
             )
-            console.log(userAnswer)
         }
     }
 

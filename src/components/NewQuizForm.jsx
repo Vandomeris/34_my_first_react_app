@@ -10,6 +10,8 @@ export default function NewQuizForm() {
         { id: Date.now(), type: 'direct', options: [''], question: '', correctAnswer: '' },
     ])
 
+    const [quizName, setQuizName] = useState('')
+
     function addQuestion() {
         setQuestionList(
             [
@@ -51,13 +53,14 @@ export default function NewQuizForm() {
     return (
         <div>
 
+            <input className="" value={quizName} onInput={(e) => setQuizName(e.target.value)} type="text" placeholder="Название квиза" />
 
             <div>
 
                 {
                     questionList.map(question => (
                         <div>
-                            <select onChange={(e) => editQuestion(question.id, e.target.value, 'type')}>
+                            <select className="bg-gray-500 text-white px-2 py-1 mb-4" onChange={(e) => editQuestion(question.id, e.target.value, 'type')}>
                                 <option value="direct">Прямой ответ</option>
                                 <option value="single">Единичный выбор</option>
                                 <option value="multiple">Множественный выбор</option>
@@ -79,9 +82,11 @@ export default function NewQuizForm() {
                     ))
                 }
 
-                <button onClick={() => addQuestion()}>Добавить вопрос</button>
+                <button className="px-2 py-1 bg-amber-500 text-white rounded-lg" onClick={() => addQuestion()}>Добавить вопрос</button>
 
-                <button onClick={() => saveQuiz()}>Сохранить Квиз!</button>
+                <div className="text-center mt-5">
+                    <button className="px-2 py-1 bg-green-500 text-white rounded-lg" onClick={() => saveQuiz()}>Сохранить Квиз!</button>
+                </div>
             </div>
 
         </div>
