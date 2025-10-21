@@ -6,6 +6,7 @@ import MainLayout from "./pages/MainLayout";
 import CreateQuizPage from "./pages/CreateQuizPage";
 import PlayQuizPage from "./pages/PlayQuizPage";
 import ProductsPage from "./pages/ProductsPage";
+import ProductItemPage from "./pages/ProductItemPage";
 
 
 export const router = createBrowserRouter([
@@ -36,6 +37,14 @@ export const router = createBrowserRouter([
             {
                 path: 'products',
                 Component: ProductsPage
+            },
+            {
+                path: 'products/:id',
+                // loader: async ({ params }) => {
+                //     const product = await fetch(`https://api.escuelajs.co/api/v1/products/${params.id}`)
+                //     return { product: product }
+                // },
+                Component: ProductItemPage
             }
         ]
     }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { NavLink } from "react-router"
 
 export default function ProductsPage() {
 
@@ -26,7 +27,7 @@ export default function ProductsPage() {
 
         const formData = new FormData(event.target)
 
-        const resp = await fetch('https://api.escuelajs.co/api/v1/products/', {
+        const resp = await fetch('https://api.escuelajs.co/api/v1/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -61,12 +62,12 @@ export default function ProductsPage() {
             <div className="grid grid-cols-4 gap-5">
                 {
                     products.map(product => (
-                        <div>
+                        <NavLink to={`/products/${product.id}`}>
                             <h3>{product.title}</h3>
                             <img className="w-full" src={product.images[0]} alt="" />
                             <p>{product.description}</p>
                             <p>{product.price}</p>
-                        </div>
+                        </NavLink>
                     ))
                 }
             </div>
