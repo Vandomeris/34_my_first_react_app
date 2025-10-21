@@ -1,4 +1,4 @@
-export default function TodoItem({ id, text, completed, toggleTodo, deleteTodo }) {
+export default function TodoItem({ todo }) {
     return (
         <div className="flex items-center gap-x-5">
             <label className={(completed ? 'striked' : '')}>

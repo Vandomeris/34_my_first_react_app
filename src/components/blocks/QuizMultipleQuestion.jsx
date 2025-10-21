@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react"
 
-export default function QuizMultipleQuestion() {
+export default function QuizMultipleQuestion({ correctAnswersList, variants, question }) {
     const [userAnswer, setUserAnswer] = useState([])
     const [result, setResult] = useState(null)
-    const correctAnswersList = [
-        'Что-то нажал и все исчезло',
-        "Собака погрызла ноутбук",
-    ]
 
-    const answersList = [
-        'Что-то нажал и все исчезло',
-        "Кошка рожает",
-        "Собака погрызла ноутбук",
-        "Не успел сварить кашу"
-    ]
+
+
 
     function checkAnswer(answer) {
         if (userAnswer.includes(answer)) {
@@ -44,9 +36,9 @@ export default function QuizMultipleQuestion() {
 
     return (
         <div className="flex flex-col gap-y-4">
-            <h3>Почему я не принес итоговый проект?</h3>
+            <h3>{question}</h3>
             {
-                answersList.map(answer => (
+                variants.map(answer => (
                     <label>
                         <input type="checkbox" defaultValue={answer} onChange={() => checkAnswer(answer)} />
                         {answer}

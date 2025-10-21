@@ -1,26 +1,15 @@
-import QuizDirectQuestion from "../components/blocks/QuizDirectQuestion"
+import { NavLink } from "react-router"
 
 export default function QuizesPage() {
 
     const quizes = JSON.parse(localStorage.getItem('quizes')) || []
-
+    console.log(quizes[0])
 
     return (
-        <div>
+        <div className="flex flex-col justify-center items-center gap-5 mt-5">
             {
-                quizes.map((quiz, index) => (
-                    <div>
-                        <h2>КВИЗ № {index + 1}</h2>
-                        {
-                            quiz.map(question => (
-                                <div>
-                                    <QuizDirectQuestion correctAnswer={question.correctAnswer} question={question.question} />
-
-                                </div>
-                            ))
-                        }
-                    </div>
-
+                quizes.map((quiz) => (
+                    <NavLink className="text-3xl hover:text-orange-500" to={`/quizes/${quiz.id}`}>{quiz.title}</NavLink>
                 ))
             }
         </div>

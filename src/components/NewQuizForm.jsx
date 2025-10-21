@@ -12,6 +12,8 @@ export default function NewQuizForm() {
 
     const [quizName, setQuizName] = useState('')
 
+
+
     function addQuestion() {
         setQuestionList(
             [
@@ -40,20 +42,32 @@ export default function NewQuizForm() {
 
 
     function saveQuiz() {
+        const quizToSave = {
+            id: Date.now(),
+            title: quizName,
+            quizQuestions: questionList
+        }
         if (localStorage.getItem('quizes')) {
             const quizes = JSON.parse(localStorage.getItem('quizes'))
-            quizes.push(questionList)
+            quizes.push(quizToSave)
             localStorage.setItem('quizes', JSON.stringify(quizes))
         } else {
-            localStorage.setItem('quizes', JSON.stringify([questionList]))
+            localStorage.setItem('quizes', JSON.stringify([quizToSave]))
         }
     }
 
 
     return (
         <div>
+            <div className="flex justify-center">
+                <input
+                    className="border border-gray-500 px-2 py-1 my-6 w-1/2"
+                    value={quizName}
+                    onInput={(e) => setQuizName(e.target.value)}
+                    type="text"
+                    placeholder="Название квиза" />
 
-            <input className="" value={quizName} onInput={(e) => setQuizName(e.target.value)} type="text" placeholder="Название квиза" />
+            </div>
 
             <div>
 

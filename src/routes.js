@@ -4,6 +4,8 @@ import AdminPage from "./pages/AdminPage";
 import QuizesPage from "./pages/QuizesPage";
 import MainLayout from "./pages/MainLayout";
 import CreateQuizPage from "./pages/CreateQuizPage";
+import PlayQuizPage from "./pages/PlayQuizPage";
+import ProductsPage from "./pages/ProductsPage";
 
 
 export const router = createBrowserRouter([
@@ -27,6 +29,14 @@ export const router = createBrowserRouter([
                 path: 'quizes/create',
                 Component: CreateQuizPage
             },
+            {
+                path: 'quizes/:id',
+                Component: PlayQuizPage
+            },
+            {
+                path: 'products',
+                Component: ProductsPage
+            }
         ]
     }
 ]);
