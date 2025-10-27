@@ -1,21 +1,32 @@
 import { NavLink, Outlet } from "react-router";
+import { CartContext } from "../stores";
+import { useState } from "react";
 export default function MainLayout() {
+
+    const [cart, setCart] = useState([])
+
     return (
-        <div className="container mx-auto">
-            <header className="flex gap-x-5 justify-end py-4">
-                <NavLink to="/">Главная</NavLink>
-                <NavLink to="/admin">Админка</NavLink>
-                <NavLink to="/quizes">Квизы!</NavLink>
-            </header>
+        <CartContext value={[cart, setCart]}>
 
 
-            <main>
-                <Outlet />
-            </main>
+            <div className="container mx-auto">
+                <header className="flex gap-x-5 justify-end py-4">
+                    <NavLink to="/">Главная</NavLink>
+                    <NavLink to="/admin">Админка</NavLink>
+                    <NavLink to="/quizes">Квизы!</NavLink>
+                    <NavLink to="/cart">Корзина</NavLink>
+                </header>
 
-            <footer>
 
-            </footer>
-        </div>
+                <main>
+                    <Outlet />
+                </main>
+
+                <footer>
+
+                </footer>
+            </div>
+
+        </CartContext>
     )
 }

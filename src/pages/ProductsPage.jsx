@@ -1,25 +1,32 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { NavLink } from "react-router"
+import { CartContext } from "../stores"
 
 export default function ProductsPage() {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([
+        { id: 1, title: 'Sneakers', description: 'Nice sneakers!!', price: 1337 },
+        { id: 2, title: 'T-Shirt', description: 'Nice T-Shirt!!', price: 1280 },
+        { id: 3, title: 'Dress', description: 'Nice Dress!!', price: 999 },
+    ])
 
-    useEffect(() => {
+    const [cart, setCart] = useContext(CartContext)
+    // cart = [cart, setCart]
+    // useEffect(() => {
 
-        async function getProducts() {
-            const resp = await fetch('https://api.escuelajs.co/api/v1/products')
-            console.log(resp)
-            if (resp.ok) {
-                const data = await resp.json()
-                setProducts(data)
-            }
+    //     async function getProducts() {
+    //         const resp = await fetch('https://api.escuelajs.co/api/v1/products')
+    //         console.log(resp)
+    //         if (resp.ok) {
+    //             const data = await resp.json()
+    //             setProducts(data)
+    //         }
 
-        }
+    //     }
 
-        getProducts()
+    //     getProducts()
 
-    }, [])
+    // }, [])
 
 
     async function createProduct(event) {
@@ -62,12 +69,15 @@ export default function ProductsPage() {
             <div className="grid grid-cols-4 gap-5">
                 {
                     products.map(product => (
-                        <NavLink to={`/products/${product.id}`}>
+                        <div>
                             <h3>{product.title}</h3>
-                            <img className="w-full" src={product.images[0]} alt="" />
+                            {/* <img className="w-full" src={product.images[0]} alt="" /> */}
                             <p>{product.description}</p>
                             <p>{product.price}</p>
-                        </NavLink>
+                            <button
+                                className="bg-green-500 px-2 py-1 text-white rounded-md cursor-pointer"
+                            >Купить</button>
+                        </div>
                     ))
                 }
             </div>

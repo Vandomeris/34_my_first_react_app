@@ -7,6 +7,7 @@ import CreateQuizPage from "./pages/CreateQuizPage";
 import PlayQuizPage from "./pages/PlayQuizPage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductItemPage from "./pages/ProductItemPage";
+import CartPage from "./pages/CartPage";
 
 
 export const router = createBrowserRouter([
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
                 //     return { product: product }
                 // },
                 Component: ProductItemPage
+            },
+            {
+                path: 'cart',
+                Component: CartPage
             }
         ]
     }
