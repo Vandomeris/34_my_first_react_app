@@ -11,6 +11,15 @@ export default function ProductsPage() {
     ])
 
     const [cart, setCart] = useContext(CartContext)
+
+    function addToCart(product) {
+        setCart(
+            [
+                ...cart, product
+            ]
+        )
+    }
+
     // cart = [cart, setCart]
     // useEffect(() => {
 
@@ -75,6 +84,7 @@ export default function ProductsPage() {
                             <p>{product.description}</p>
                             <p>{product.price}</p>
                             <button
+                                onClick={() => addToCart(product)}
                                 className="bg-green-500 px-2 py-1 text-white rounded-md cursor-pointer"
                             >Купить</button>
                         </div>
