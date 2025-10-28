@@ -2,6 +2,7 @@ import { useState } from "react"
 import CreateQuizDirectQuestion from "./blocks/CreateQuizDirectQuestion"
 import CreateQuizSignleAnswer from "./blocks/CreateQuizSignleAnswer"
 import CreateQuizMultipleAnswer from "./blocks/CreateQuizMultipleAnswer"
+import { Select } from "antd"
 
 export default function NewQuizForm() {
 
@@ -74,11 +75,16 @@ export default function NewQuizForm() {
                 {
                     questionList.map(question => (
                         <div>
-                            <select className="bg-gray-500 text-white px-2 py-1 mb-4" onChange={(e) => editQuestion(question.id, e.target.value, 'type')}>
-                                <option value="direct">Прямой ответ</option>
-                                <option value="single">Единичный выбор</option>
-                                <option value="multiple">Множественный выбор</option>
-                            </select>
+                            <Select
+                                placeholder="Выберите тип вопроса"
+                                style={{ width: 250 }}
+                                onChange={(value) => editQuestion(question.id, value, 'type')}
+                                options={[
+                                    { value: 'direct', label: 'Прямой ответ' },
+                                    { value: 'single', label: 'Единичный выбор' },
+                                    { value: 'multiple', label: 'Множественный выбор' },
+                                ]}
+                            />
                             {
                                 question.type === 'direct' &&
                                 <CreateQuizDirectQuestion question={question} editQuestion={editQuestion} />

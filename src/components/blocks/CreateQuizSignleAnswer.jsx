@@ -1,3 +1,5 @@
+import { Button, Input } from "antd"
+
 export default function CreateQuizSignleAnswer({ question, editQuestion }) {
 
 
@@ -13,24 +15,45 @@ export default function CreateQuizSignleAnswer({ question, editQuestion }) {
         <div>
             <label>
                 <p>Введите текст вопроса</p>
-                <input className="border border-gray-500 px-2 py-1 my-2" value={question.question} onInput={(e) => editQuestion(question.id, e.target.value, 'question')} type="text" placeholder="Текст вопроса" />
+                <Input
+                    style={{ width: 250 }}
+                    value={question.question}
+                    onInput={(e) => editQuestion(question.id, e.target.value, 'question')}
+                    placeholder="Текст вопроса"
+                />
             </label>
 
             <div>
                 {
                     question.options.map((option, index) => (
-                        <div className="flex items-center gap-x-3">
-                            <input className="border border-gray-500 px-2 py-1 my-2" type="text" value={option} onInput={(e) => editOption(question.id, index, e.target.value)} placeholder={`Вариант ${index + 1}`} />
-                            <button className="cursor-pointer border border-green-500 px-2 py-1 hover:bg-green-500 hover:text-white transition-all" onClick={() => editQuestion(question.id, option, 'correctAnswer')}>Отметить правильный ответ</button>
+                        <div className="flex items-center gap-x-3 my-5">
+                            <Input
+                                style={{ width: 250 }}
+                                value={option}
+                                onInput={(e) => editOption(question.id, index, e.target.value)}
+                                placeholder={`Вариант ${index + 1}`}
+                            />
+                            <Button
+                                color="primary"
+                                variant="outlined"
+                                onClick={() => editQuestion(question.id, option, 'correctAnswer')}
+                            >
+                                Отметить правильный ответ
+                            </Button>
+
                         </div>
 
                     ))
                 }
             </div>
-            <button
-                onClick={() => editQuestion(question.id, [...question.options, ''], 'options')}
-                className="border border-amber-500 py-1 px-2 rounded-xl mt-3"
-            >Добавить вариант</button>
+
+            <Button
+                color="purple"
+                variant="solid"
+                onClick={() => editQuestion(question.id, [...question.options, ''], 'options')}>
+                Добавить вариант
+            </Button>
+
 
             <div>
                 <h4>Правильный ответ</h4>
