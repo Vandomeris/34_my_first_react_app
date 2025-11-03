@@ -14,6 +14,7 @@ export default function MainLayout() {
                     <NavLink to="/">Главная</NavLink>
                     <NavLink to="/admin">Админка</NavLink>
                     <NavLink to="/quizes">Квизы!</NavLink>
+                    <NavLink to="/products">Товары</NavLink>
                     <NavLink className="relative" to="/cart">Корзина
                         <div
                             className="absolute -top-2 -right-2 text-[10px] bg-red-400 w-4 h-4 flex justify-center text-white rounded-full"

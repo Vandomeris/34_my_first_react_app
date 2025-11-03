@@ -1,8 +1,30 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { CartContext } from "../stores"
 
-export default function Counter() {
+export default function Counter({ quantity, id }) {
 
-    const [number, setNumber] = useState(1)
+    const [number, setNumber] = useState(quantity)
+
+    const [cart, setCart] = useContext(CartContext)
+
+    function changeQuantity(id, newQuantity) {
+        if (newQuantity === 0) {
+            setCart(
+                cart.filter(element => element.id !== id)
+            )
+        } else {
+            setCart(
+                cart.map(element => {
+                    if (element.id == id) {
+                        element.quantity = newQuantity
+                    }
+                    return element
+                })
+            )
+        }
+
+    }
+
 
     function increment() {
         if (number < 10) {
@@ -16,6 +38,10 @@ export default function Counter() {
 
         }
     }
+
+    useEffect(() => {
+        changeQuantity(id, number)
+    }, [number])
 
 
     return (
